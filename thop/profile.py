@@ -1,7 +1,7 @@
 from distutils.version import LooseVersion
 
-from thop.vision.basic_hooks import *
-from thop.rnn_hooks import *
+from pytorchOpCounter.thop.vision.basic_hooks import *
+from pytorchOpCounter.thop.rnn_hooks import *
 
 
 # logger = logging.getLogger(__name__)
@@ -209,6 +209,7 @@ def profile(
     model.apply(add_hooks)
 
     with torch.no_grad():
+        print(inputs.shape)
         model(*inputs)
 
     def dfs_count(module: nn.Module, prefix="\t") -> (int, int):
